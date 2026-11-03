@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rabia 🎂❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            background: #ffffff;
+            padding: 35px 25px;
+            border-radius: 35px;
+            box-shadow: 0 20px 40px rgba(255, 105, 135, 0.3);
+            max-width: 420px;
+            width: 85%;
+            margin: auto;
+            position: relative;
+            z-index: 10;
+            transition: 0.3s;
+        }
+        h1, h2 {
+            color: #d63384;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        button {
+            background: linear-gradient(45deg, #ff4b5c, #ff6b8b);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 8px 20px rgba(255, 75, 92, 0.4);
+        }
+        input, textarea {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ffb6c1;
+            border-radius: 15px;
+            font-size: 15px;
+            text-align: center;
+            outline: none;
+            background: #fff9fa;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .balloon-container, .anime-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .balloon {
+            background: radial-gradient(circle at 30% 30%, #ff8da1, #ff4b5c);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            width: 85px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .gift-card {
+            background: #fff0f3;
+            border: 2px dashed #ff4b5c;
+            padding: 10px;
+            border-radius: 12px;
+            width: 90px;
+            font-weight: bold;
+            color: #d63384;
+            font-size: 13px;
+        }
+        .popup-msg {
+            background: #ffe6eb;
+            border-left: 5px solid #d63384;
+            padding: 10px;
+            margin-top: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+        #floating-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+        .fly-balloon {
+            position: absolute;
+            bottom: -160px;
+            background: linear-gradient(135deg, #ff758c, #ff4b5c);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            width: 110px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2);
+            animation: flyUp 3.5s linear forwards;
+        }
+        @keyframes flyUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-120vh) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background Birthday Music Audio -->
+<audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-cute.mp3" type="audio/mp3">
+</audio>
+
+<div id="floating-sky"></div>
+
+<div class="container" id="main-container">
+    <!-- Step 1: Welcome -->
+    <div id="step-1">
+        <h1>Happy Birthday Rabia 🎂</h1>
+        <p>Meri zindagi ki sab se khoobsurat jaan ke liye ek special aur pyaari si website! ❤️</p>
+        <button onclick="playMusic(); goToStep(2);">Start Journey ✨</button>
+    </div>
+
+    <!-- Step 2: 4 Balloons -->
+    <div id="step-2" class="hidden">
+        <h2>Pop the Balloons 🎈</h2>
+        <p>In 4 balloons par click karke inhein pharo aur Dua dekhein:</p>
+        <div class="balloon-container">
+            <div class="balloon" id="b1" onclick="popB('b1', 'Dua: Zindagi khushiyon se bhar jaye! 🌸')">Zindagi</div>
+            <div class="balloon" id="b2" onclick="popB('b2', 'Dua: Allah aapko har buri nazar se bachaye! 🤲')">Prayers</div>
+            <div class="balloon" id="b3" onclick="popB('b3', 'Dua: Humara pyaar mazboot hota rahe! 💞')">Mohabbat</div>
+            <div class="balloon" id="b4" onclick="popB('b4', 'Dua: Behtareen akhirat naseeb ho! 🌟')">Behtri</div>
+        </div>
+        <div id="balloon-popup" class="popup-msg hidden"></div>
+        <br>
+        <button id="next-btn-2" class="hidden" onclick="goToStep(3)">Aage Chalein ➡️</button>
+    </div>
+
+    <!-- Step 3: 2 General Questions -->
+    <div id="step-3" class="hidden">
+        <h2>Kuch Sawaal Aap Se...</h2>
+        <p>1. Aapko duniya mein sab se zyada achi cheez kya lagti hai?</p>
+        <input type="text" id="ans1" oninput="checkS3()" placeholder="Yahan likhein...">
+        <p>2. Aur sab se buri cheez kya lagti hai?</p>
+        <input type="text" id="ans2" oninput="checkS3()" placeholder="Yahan likhein...">
+        <br>
+        <button id="next-btn-3" class="hidden" onclick="goToStep(4)">Next ➡️</button>
+    </div>
+
+    <!-- Step 4: 10 Questions for Ammar -->
+    <div id="step-4" class="hidden">
+        <h2>Ammar ke Baare mein Sawaal! 🥰</h2>
+        <p>1. Meri sab se achi ya cute aadat konsi lagti hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>2. Jab main gussa hota hoon, toh main kaisa lagta hoon?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>3. Mera konsa andaaz sab se ziyada attractive hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>4. Meri kis baat par sab se ziyada pyar aata hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>5. Kya aapko mera care karne ka tareeqa pasand hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>6. Humari kisi aisi yaad ka naam jo dil ke kareeb ho?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>7. Main jab aapki tareef karta hoon, toh kaisa lagta hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>8. Meri konsi harkat aapko sab se ziyada hasati hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>9. Humari jodi ki sab se badi taaqat kya hai?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <p>10. Agar mujhe ek lafz mein bayaan karna ho, toh kya kahogi?</p><input type="text" class="ammar-q" oninput="checkS4()">
+        <button id="next-btn-4" class="hidden" onclick="goToStep(5)">Next ➡️</button>
+    </div>
+
+    <!-- Step 5: Final Love Question -->
+    <div id="step-5" class="hidden">
+        <h2>Ek Aakhri Sawaal:</h2>
+        <p>Aap apni zindagi mein sab se zyada kis ko pyari karti ho?</p>
+        <input type="text" id="ans-love" oninput="checkS5()" placeholder="Likhein...">
+        <br>
+        <button id="next-btn-5" class="hidden" onclick="goToStep(6)">Next ➡️</button>
+    </div>
+
+    <!-- Step 6: 4 Kiss Emojis & Kiss Request -->
+    <div id="step-6" class="hidden">
+        <h2>Sweet Moments ❤️</h2>
+        <div style="font-size: 38px; margin: 15px; display: flex; justify-content: center; gap: 15px;">
+            <span>👩‍❤️‍💋‍👨</span>
+            <span>👩‍❤️‍💋‍👨</span>
+            <span>👩‍❤️‍💋‍👨</span>
+            <span>👩‍❤️‍💋‍👨</span>
+        </div>
+        <p style="font-weight: bold; color: #d63384; font-size: 16px;">Ap bhi mujhe kiss krey na! 😘</p>
+        <button onclick="goToStep(7)">Aage Barhein 💕</button>
+    </div>
+
+    <!-- Step 7: Secret Code Letter -->
+    <div id="step-7" class="hidden">
+        <h2>Secret Love Letter 💌</h2>
+        <p>Password enter karein:</p>
+        <input type="password" id="passcode" oninput="checkS7()" placeholder="Enter password...">
+        <br>
+        <button id="unlock-btn" class="hidden" onclick="checkPass()">Unlock Letter 🔓</button>
+        <div id="letter-content" class="hidden" style="margin-top: 15px; background: #fff0f3; padding: 15px; border-radius: 12px;">
+            <p><b>Meri Pyari Rabia,</b></p>
+            <p>Allah hum dono ki salmati aur hamare pyaar ko hamesha salamat rakhe! Tum meri poori duniya ho! 🌍❤️</p>
+        </div>
+        <button id="after-letter" class="hidden" onclick="goToStep(8)">Next ➡️</button>
+    </div>
+
+    <!-- Step 8: Gifts -->
+    <div id="step-8" class="hidden">
+        <h2>Aapke Special Gifts 🎁</h2>
+        <div class="balloon-container">
+            <div class="gift-card">Suit 👗</div>
+            <div class="gift-card">Shoes 👠</div>
+            <div class="gift-card">1000 Cash 💵</div>
+            <div class="gift-card">Bracelet 💍</div>
+            <div class="gift-card">Your Choice 🤗</div>
+        </div>
+        <p style="font-size: 30px; margin: 10px;">👩‍❤️‍💋‍👨</p>
+        <button onclick="goToStep(9)">Next ➡️</button>
+    </div>
+
+    <!-- Step 9: Love Test -->
+    <div id="step-9" class="hidden">
+        <h2>Sachaai ka Test! 😏</h2>
+        <p style="font-weight: bold;">Kya aap mujhe pyaar karti ho ya nahi?</p>
+        <button onclick="lYes()">Yes ❤️</button>
+        <button onclick="lNo()">No 😒</button>
+    </div>
+
+    <!-- Step 10: Big Greeting -->
+    <div id="step-10" class="hidden">
+        <h1 style="font-size: 28px; color: #ff1493;">Happy Birthday Kamaki Jan ☺️</h1>
+        <button onclick="goToStep(11)">Aage Barhein 🎂</button>
+    </div>
+
+    <!-- Step 11: Cake & Name Verification -->
+    <div id="step-11" class="hidden">
+        <h2>🎂 Cake Time! 🎂</h2>
+        <p>Cake par <b>Rabia</b> likha hai. Apna naam sath likhein:</p>
+        <input type="text" id="cake-name-input" oninput="checkS11()" placeholder="Yahan likhein...">
+        <br>
+        <button id="next-btn-11" class="hidden" onclick="verifyCake()">Check Name ✨</button>
+    </div>
+
+    <!-- Step 12: 200 Floating Balloons Step -->
+    <div id="step-12" class="hidden" style="background: transparent; box-shadow: none;">
+        <button id="next-btn-12" class="hidden" onclick="goToStep(13)" style="position: relative; z-index: 1000;">Aage Chalein ➡️</button>
+    </div>
+
+    <!-- Step 13: Massive Birthday Wishes -->
+    <div id="step-13" class="hidden">
+        <div style="font-size: 13px; line-height: 1.7; text-align: left; max-height: 250px; overflow-y: auto; padding: 10px; background: #fff5f7; border-radius: 12px;">
+            🎉 Happy Birthday Rabia 😘<br>
+            🎉 Happy Birthday madam g ❤️<br>
+            🎉 Happy Birthday kamaki 🥰<br>
+            🎉 Happy Birthday Jan ☺️<br>
+            🎉 Happy Birthday love 💕<br>
+            🎉 Happy Birthday 🎂 my wifffeeeyyyyyyyy 😘<br>
+            ✨ My Jan<br>✨ My love<br>✨ My way of happiness 😊<br>
+            ✨ My princess<br>✨ Incomplete part of my life<br>
+            ✨ My heart<br>✨ My mind<br>✨ My sweet universe<br>
+            ✨ My ultimate peace<br>
+            ✨ My smile reason<br>
+            ✨ My everything<br>
+            <br>
+            <b>Happy Happy Returns of the day MADAM G 🙂✨🫂</b>
+        </div>
+        <button onclick="goToStep(14)">Final Step ❤️</button>
+    </div>
+
+    <!-- Step 14: Final Feedback -->
+    <div id="step-14" class="hidden">
+        <h2>Ammar ❤️ Rabia</h2>
+        <p>Do you like it?</p>
+        <button onclick="fYes()">Yes! Bohat zyada 😍</button>
+        <button onclick="fNo()">Nahi 😒</button>
+        <div id="custom-feedback" class="hidden">
+            <p style="margin-top: 12px;">Aap khud likh kar batao kaisa laga:</p>
+            <input type="text" id="feedback-text" oninput="checkFb()" placeholder="Yahan likhein...">
+            <br>
+            <button id="final-submit-btn" class="hidden" onclick="finishWeb()">Submit & Finish 💕</button>
+        </div>
+    </div>
+
+    <!-- End Screen -->
+    <div id="end-screen" class="hidden">
+        <h1 style="color: #d63384; font-size: 30px;">The End! ❤️</h1>
+        <p style="font-weight: bold;">Hamesha khush raho Meri Jaan! Allah humari jodi salamat rakhe. Ameen! ✨</p>
+        <p style="font-size: 20px; color: #ff1493; margin-top: 15px; font-weight: bold;">Allah Hafiz! 🙏✨</p>
+    </div>
+</div>
+
+<script>
+    let noCnt = 0, popCnt = 0;
+
+    function playMusic() {
+        let music = document.getElementById('bg-music');
+        if(music) {
+            music.play().catch(error => {
+                console.log("Audio play prevented by browser policy");
+            });
+        }
+    }
+
+    function goToStep(n) {
+        let target = document.getElementById('step-' + n);
+        if(target) {
+            document.querySelectorAll('.container > div').forEach(el => el.classList.add('hidden'));
+            target.classList.remove('hidden');
+            if(n === 12) {
+                document.getElementById('main-container').style.background = 'transparent';
+                document.getElementById('main-container').style.boxShadow = 'none';
+                startBalloons();
+            } else {
+                document.getElementById('main-container').style.background = '#ffffff';
+                document.getElementById('main-container').style.boxShadow = '0 20px 40px rgba(255, 105, 135, 0.3)';
+            }
+        }
+    }
+
+    function checkS3() {
+        let v1 = document.getElementById('ans1').value.trim();
+        let v2 = document.getElementById('ans2').value.trim();
+        let btn = document.getElementById('next-btn-3');
+        if(v1 && v2) btn.classList.remove('hidden'); else btn.classList.add('hidden');
+    }
+
+    function checkS4() {
+        let inputs = document.querySelectorAll('.ammar-q');
+        let filled = true;
+        inputs.forEach(i => { if(!i.value.trim()) filled = false; });
+        let btn = document.getElementById('next-btn-4');
+        if(filled) btn.classList.remove('hidden'); else btn.classList.add('hidden');
+    }
+
+    function checkS5() {
+        let val = document.getElementById('ans-love').value.trim();
+        let btn = document.getElementById('next-btn-5');
+        if(val) btn.classList.remove('hidden'); else btn.classList.add('hidden');
+    }
+
+    function checkS7() {
+        let val = document.getElementById('passcode').value.trim();
+        let btn = document.getElementById('unlock-btn');
+        if(val) btn.classList.remove('hidden'); else btn.classList.add('hidden');
+    }
+
+    function checkS11() {
+        let val = document.getElementById('cake-name-input').value.trim();
+        let btn = document.getElementById('next-btn-11');
+        if(val) btn.classList.remove('hidden'); else btn.classList.add('hidden');
+    }
+
+    function popB(id, msg) {
+        let el = document.getElementById(id);
+        if(el && !el.classList.contains('popped')) {
+            el.classList.add('popped');
+            el.style.display = 'none';
+            let popup = document.getElementById('balloon-popup');
+            popup.innerText = msg;
+            popup.classList.remove('hidden');
+            popCnt++;
+            if(popCnt === 4) document.getElementById('next-btn-2').classList.remove('hidden');
+        }
+    }
+
+    function checkPass() {
+        let val = document.getElementById('passcode').value.trim();
+        if(val.toLowerCase() === "ango mango soo much") {
+            document.getElementById('letter-content').classList.remove('hidden');
+            document.getElementById('after-letter').classList.remove('hidden');
+        } else {
+            alert("Galat password!");
+        }
+    }
+
+    function lYes() { goToStep(10); }
+
+    function lNo() {
+        noCnt++;
+        if(noCnt >= 3) {
+            document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20vh;'>Website Closed! Jao pehle pyaar se Yes bolo! 😒</h1>";
+        } else {
+            alert("Dobara socho! (No count: " + noCnt + "/3)");
+        }
+    }
+
+    function verifyCake() {
+        let name = document.getElementById('cake-name-input').value.trim().toLowerCase();
+        if(name === "ammar" || name === "sir g") {
+            goToStep(12);
+        } else {
+            document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20vh;'>Website Closed! Galat naam likha hai! ❌</h1>";
+        }
+    }
+
+    function startBalloons() {
+        let sky = document.getElementById('floating-sky');
+        sky.innerHTML = "";
+        let totalBalloons = 200;
+        let spawned = 0;
+
+        let positions = [window.innerWidth * 0.15, window.innerWidth * 0.45, window.innerWidth * 0.75];
+
+        let batchTimer = setInterval(() => {
+            if(spawned >= totalBalloons) {
+                clearInterval(batchTimer);
+                setTimeout(() => {
+                    document.getElementById('next-btn-12').classList.remove('hidden');
+                }, 4000);
+                return;
+            }
+
+            positions.forEach((pos) => {
+                if(spawned < totalBalloons) {
+                    let b = document.createElement('div');
+                    b.className = 'fly-balloon';
+                    b.innerText = "Happy Birthday Rabia 😘";
+                    b.style.left = pos + 'px';
+                    b.style.animationDuration = '3.5s';
+                    sky.appendChild(b);
+                    spawned++;
+                }
+            });
+        }, 500);
+    }
+
+    function checkFb() {
+        let val = document.getElementById('feedback-text').value.trim();
+        let btn = document.getElementById('final-submit-btn');
+        if(val) btn.classList.remove('hidden'); else btn.classList.add('hidden');
+    }
+
+    function fYes() {
+        alert("Thank you meri jaan! ❤️");
+        goToStep('end');
+        document.getElementById('end-screen').classList.remove('hidden');
+    }
+
+    function fNo() {
+        document.getElementById('custom-feedback').classList.remove('hidden');
+    }
+
+    function finishWeb() {
+        alert("Aapka jawab mil gaya! ❤️");
+        document.querySelectorAll('.container > div').forEach(el => el.classList.add('hidden'));
+        document.getElementById('end-screen').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
+
+  
